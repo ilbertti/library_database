@@ -4,15 +4,15 @@ from typing import List
 def main():
 
     if len(sys.argv) != 2:
-        print("Incorrect number of input arguments.")
-        quit_program()
+        errorMsg = "Incorrect number of input arguments."
+        quit_program(errorMsg)
 
     filePath = sys.argv[1]
     try:
         file = open(filePath, 'r+')
     except IOError:
-        print("Error opening the file.")
-        quit_program()
+        errorMsg = "Error opening the file."
+        quit_program(errorMsg)
 
     #Keep track of the current contents of the file.
     #Minimizes the need for reading the file
@@ -33,7 +33,7 @@ def main():
         ans = readUserInput()
     quit_program()
 
-def addBook(file, contents):
+def addBook(file, contents: List[str]):
     title = input("\nGive the name of the book: ")
     writer = input("Give the name of the writer: ")
     isbn = input("Give the ISBN of the book: ")
@@ -53,7 +53,7 @@ def addBook(file, contents):
         return
     writeToFile(file, record, contents)
     
-def writeToFile(file, record, contents):
+def writeToFile(file, record: str, contents: List[str]):
     """
     Use binary search to find a location for the new record
     and insert at that location. Write the updated contents list
@@ -77,7 +77,7 @@ def writeToFile(file, record, contents):
     print("Book added to the database!\n")
 
 
-def readUserInput():
+def readUserInput() -> str:
     print("Select one of the following choises:")
     print("1) Add new book")
     print("2) Print current database")
@@ -103,7 +103,7 @@ def printBooks(contents: List[str]):
         print("")
     print("")
 
-def checkInt(value: str):
+def checkInt(value: str) -> bool:
     isInt = True
     try:
         int(value)
@@ -113,7 +113,8 @@ def checkInt(value: str):
     return isInt
 
 
-def quit_program():
+def quit_program(errorMsg = ""):
+    print(errorMsg)
     print("Exiting program...")
     sys.exit()
 

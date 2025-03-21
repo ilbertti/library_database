@@ -18,7 +18,7 @@ The user needs to provide the following information:
     - The name of the book.
     - The name of the author.
     - The ISBN number of the book.
-    - The release year of the book as integer.
+    - The release year of the book as an integer.
 
     After giving the information, the program asks if the information is correct (y/n):
     - 'y' adds the book to the database
